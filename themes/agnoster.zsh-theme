@@ -77,6 +77,11 @@ prompt_end() {
 ### Prompt components
 # Each component will draw itself, and hide itself if no information needs to be shown
 
+# Timestamp in prompt
+prompt_time() {
+    prompt_segment green default "%(!.%{%F{yellow}%}.)%T"
+}
+
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
@@ -217,6 +222,7 @@ build_prompt() {
   RETVAL=$?
   prompt_status
   prompt_virtualenv
+  prompt_time
   prompt_context
   prompt_dir
   prompt_git
